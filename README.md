@@ -2,6 +2,8 @@
 
 A real-time database for ASpNetCore Backend which powered by SignalR.
 
+> STILL UNDER-DEVELOPMENT
+
 # Summary
 *to be added...*
 
