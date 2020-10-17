@@ -40,6 +40,9 @@ namespace DotRealDb.Client
                 foreach (var header in options.HttpHeaders)
                     client.DefaultRequestHeaders.Add(header.Key, header.Value);
 
+                if (entityName == null)
+                    entityName = typeof(T).Name;
+
                 var json = await client.GetStringAsync($"{options.ServerBaseUrl}/_api/{dbContextName}/{entityName}?page=1&perPage={limit}");
 
                 var items = JsonConvert.DeserializeObject<ObservableCollection<T>>(json);
