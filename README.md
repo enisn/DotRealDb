@@ -46,7 +46,7 @@ public class SampleDbContext : DotRealDbContext // <- Change inheritance
 
 If you're not able to change your DbContext inehritance, just use this way.
 
- 1) Inject **IDotREalChangeTracker** into your DbContext:
+ 1) Inject **IDotRealChangeTracker** into your DbContext:
  2) Override **SaveChanges** methods, and call **TrackAndPublishAsync()** method over tracker
 
 ```csharp
@@ -59,7 +59,7 @@ public class SampleDbContext : IdentityDbContext  // Can't change this inheritan
     }
 
     // (1) inject IDotRealChangeTracker and set it into a field.
-    public SampleDbContext(DbContextOptions options, IDotRealChangeTracker tracker) : base(options, tracker)
+    public SampleDbContext(DbContextOptions options, IDotRealChangeTracker tracker) : base(options)
     {
         this.tracker = tracker;
     }
