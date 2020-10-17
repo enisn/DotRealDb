@@ -16,6 +16,8 @@ namespace Sample.DotRealDb.Mobile
     public class MainPageViewModel : BindableObject
     {
         private readonly DotRealChangeHandler changeHandler;
+        private IList<WeatherForecast> items;
+
         public MainPageViewModel()
         {
             changeHandler = new DotRealChangeHandler(new DotRealDbClientOptions
@@ -25,19 +27,11 @@ namespace Sample.DotRealDb.Mobile
             FetchData();
         }
 
-        public IList<WeatherForecast> Items { get; set; } = new ObservableCollection<WeatherForecast>();
+        public IList<WeatherForecast> Items { get => items; set { items = value; OnPropertyChanged(); } }
 
         private async void FetchData()
         {
-            using (var client = new HttpClient())
-            {
-                var response = await client.GetStringAsync("http://10.0.2.2:5000/WeatherForecast");
-
-                var list = JsonSerializer.Deserialize<IList<WeatherForecast>>(response);
-                list.ForEach(this.Items.Add);
-
-                await changeHandler.StartTrackingAsync(Items, "SampleDbContext");
-            }
+            this.Items = await changeHandler.ConnectAndTrackAsync<WeatherForecast>("SampleDbContext");
         }
     }
 }
