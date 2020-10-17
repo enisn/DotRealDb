@@ -1,8 +1,16 @@
-# DotRealDb
+﻿# DotRealDb
 
-A real-time database for ASpNetCore Backend which powered by SignalR.
+A real-time database for AspNetCore Backend which powered by SignalR.
 
 > STILL UNDER-DEVELOPMENT
+
+
+[![CodeFactor](https://www.codefactor.io/repository/github/enisn/dotrealdb/badge)](https://www.codefactor.io/repository/github/enisn/dotrealdb)
+
+<a href="https://gitmoji.carloscuesta.me">
+  <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
+</a>
+
 
 # Summary
 *to be added...*
