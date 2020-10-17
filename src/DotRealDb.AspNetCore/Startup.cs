@@ -7,6 +7,12 @@ namespace DotRealDb.AspNetCore
 {
     public static class Startup
     {
+        public static IMvcBuilder AddDotRealDbEndpoints(this IMvcBuilder mvcBuilder)
+        {
+            mvcBuilder.AddApplicationPart(typeof(Startup).Assembly);
+            return mvcBuilder;
+        }
+
         public static IServiceCollection AddDotRealDb(this IServiceCollection services)
         {
             services.AddSignalR();
