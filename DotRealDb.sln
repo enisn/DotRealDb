@@ -23,6 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.DotRealDb.Mobile", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.DotRealDb.Blazor", "sandbox\Sample.DotRealDb.Web\Client\Sample.DotRealDb.Blazor.csproj", "{ED754D8E-A8FD-482B-A0F8-2AC6DCEB1591}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{575B6699-A917-469B-AFAE-57FD0AB15E54}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,6 +1,7 @@
 ﻿@page "/fetchdata"
 
 @using global::DotRealDb.Client
+@using global::Sample.DotRealDb.Web.Shared
 @using System.Collections.ObjectModel;
 @inject HttpClient Http
 @inject IDotRealChangeHandler ChangeHandler
@@ -49,16 +50,5 @@ else
         forecasts.CollectionChanged += (_, __) => StateHasChanged();
 
         await ChangeHandler.StartTrackingAsync(forecasts, "SampleDbContext");
-    }
-
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }
 }

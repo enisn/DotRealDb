@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\DotRealDb.Client\DotRealDb.Client.csproj" />
+    <ProjectReference Include="..\Shared\Sample.DotRealDb.Web.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

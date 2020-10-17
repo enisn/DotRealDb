@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using DotRealDb.Client;
+using System.Collections.ObjectModel;
+using Sample.DotRealDb.Web.Shared;
 
 namespace Sample.DotRealDb.Blazor
 {
@@ -23,6 +25,23 @@ namespace Sample.DotRealDb.Blazor
             builder.Services.AddDotRealDbClient(opts => opts.ServerBaseUrl = "https://localhost:5001");
 
             await builder.Build().RunAsync();
+        }
+    }
+
+    public class MyViewModel
+    {
+        private readonly IDotRealChangeHandler changeHandler;
+
+        public MyViewModel(IDotRealChangeHandler changeHandler)
+        {
+            this.changeHandler = changeHandler;
+            FetchAndStartTracking();
+        }
+
+        public ObservableCollection<WeatherForecast> Items { get; set; } = new ObservableCollection<WeatherForecast>();
+        private async void FetchAndStartTracking()
+        {
+            await changeHandler.StartTrackingAsync(this.Items, "SampleDbContext");
         }
     }
 }
