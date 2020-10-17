@@ -18,6 +18,7 @@ A real-time database for ASpNetCore Backend which powered by SignalR.
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
+    services.AddControllers().AddDotRealDbEndpoints(); // <-- Add this one after IMvcBuilder.
     //...
 
     services.AddDotRealDb(); // <-- Add this one.
@@ -136,10 +137,10 @@ public class MyViewModel
      * Because tracker will add, remove, or update elements in your given list.
      * So you can handle changes manually with CollectionChanged event.
      */
-    public ObservableCollection<WeatherForecast> Items { get; set; } = new ObservableCollection<WeatherForecast>();
+    public ObservableCollection<WeatherForecast> Items { get; set; }
     private async void StartTracking()
     {
-        await changeHandler.StartTrackingAsync(this.Items, "SampleDbContext");
+        this.Items = await changeHandler.StartTrackingAsync<WeatherForecast>("SampleDbContext");
     }
 }
 ```
@@ -193,10 +194,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<ObservableCollection<WeatherForecast>>("https://localhost:5001" + "/WeatherForecast");
-        forecasts.CollectionChanged += (_, __) => StateHasChanged();
+        forecasts = await ChangeHandler.ConnectAndTrackAsync<WeatherForecast>("SampleDbContext");
 
-        await ChangeHandler.StartTrackingAsync(forecasts, "SampleDbContext");
+        // Following code is required to render page after any changes:
+        forecasts.CollectionChanged += (_, __) => StateHasChanged();
     }
 }
 
@@ -216,30 +217,22 @@ else
 public class MainPageViewModel : BindableObject
 {
     private readonly DotRealChangeHandler changeHandler;
+    private IList<WeatherForecast> items;
+
     public MainPageViewModel()
     {
         changeHandler = new DotRealChangeHandler(new DotRealDbClientOptions
         {
             ServerBaseUrl = "http://10.0.2.2:5000"
         });
-        FetchData();
+        ConnectToRealtimeDb();
     }
-    /* I suggest to use ObservableCollection in here.
-     * UI will be automatically updated in Xamarin Forms.
-     */
-    public IList<WeatherForecast> Items { get; set; } = new ObservableCollection<WeatherForecast>();
 
-    private async void FetchData()
+    public IList<WeatherForecast> Items { get => items; set { items = value; OnPropertyChanged(); } }
+
+    private async void ConnectToRealtimeDb()
     {
-        using (var client = new HttpClient())
-        {
-            var response = await client.GetStringAsync("http://10.0.2.2:5000/WeatherForecast");
-
-            var list = JsonSerializer.Deserialize<IList<WeatherForecast>>(response);
-            list.ForEach(this.Items.Add);
-
-            await changeHandler.StartTrackingAsync(Items, "SampleDbContext");
-        }
+        this.Items = await changeHandler.ConnectAndTrackAsync<WeatherForecast>("SampleDbContext");
     }
 }
 ```
