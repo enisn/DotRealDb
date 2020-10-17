@@ -24,12 +24,12 @@ namespace Sample.DotRealDb.Mobile
             {
                 ServerBaseUrl = "http://10.0.2.2:5000"
             });
-            FetchData();
+            ConnectToRealtimeDb();
         }
 
         public IList<WeatherForecast> Items { get => items; set { items = value; OnPropertyChanged(); } }
 
-        private async void FetchData()
+        private async void ConnectToRealtimeDb()
         {
             this.Items = await changeHandler.ConnectAndTrackAsync<WeatherForecast>("SampleDbContext");
         }
