@@ -26,21 +26,24 @@ namespace DotRealDb.AspNetCore.Services
 
         public T Resolve<T>(string name)
         {
-            var type = GetTypeFromName(name);
+            var type = GetTypeFromName(name) ?? throw new ArgumentException($"There is no Type which is named as '{name}' in current loaded assemblies.");
 
-            if (type != typeof(T))
+            if (!typeof(T).IsAssignableFrom(type))
             {
                 throw new ArgumentException($"Generic parameter T ({typeof(T).FullName}) doesn't match the given type name ('{name}'). {type.FullName} is found by given {name} parameter.");
             }
 
-            return (T)serviceProvider.GetRequiredService(type);
+            
+
+            return (T)serviceProvider.CreateScope().ServiceProvider.GetRequiredService(type);
         }
 
-        private Type GetTypeFromName(string name)
+        public Type GetTypeFromName(string name)
         {
-            var existing = _alreadyFoundTypes[name];
-            if (existing != null)
+            if (_alreadyFoundTypes.TryGetValue(name, out Type existing))
+            {
                 return existing;
+            }
 
             var found = FindTypeFromName(name);
             if (found == null)
