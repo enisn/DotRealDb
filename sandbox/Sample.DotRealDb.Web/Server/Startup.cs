@@ -27,7 +27,10 @@ namespace Sample.DotRealDb.Web.Server
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllersWithViews();
+            services
+                .AddControllersWithViews()
+                .AddDotRealDbEndpoints();
+
             services.AddRazorPages();
 
             services.AddDotRealDb();

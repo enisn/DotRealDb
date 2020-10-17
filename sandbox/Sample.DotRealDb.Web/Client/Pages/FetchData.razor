@@ -46,9 +46,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<ObservableCollection<WeatherForecast>>("https://localhost:5001" + "/WeatherForecast");
+        forecasts = await ChangeHandler.ConnectAndTrackAsync<WeatherForecast>("SampleDbContext");
         forecasts.CollectionChanged += (_, __) => StateHasChanged();
-
-        await ChangeHandler.StartTrackingAsync(forecasts, "SampleDbContext");
     }
 }

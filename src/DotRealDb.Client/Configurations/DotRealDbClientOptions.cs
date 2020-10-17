@@ -11,6 +11,8 @@ namespace DotRealDb.Client.Configurations
     {
         public string ServerBaseUrl { get; set; }
 
+        public Dictionary<string, string> HttpHeaders { get; set; } = new Dictionary<string, string>();
+
         public Action<IHubConnectionBuilder> ConfigureBuilder { get; set; }
     }
 }
