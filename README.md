@@ -81,14 +81,12 @@ public class SampleDbContext : IdentityDbContext  // Can't change this inheritan
     // (2) Override SaveChanges method and call TrackAndPublish method.
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
-        tracker.TrackAndPublish(this); // <-- Here
-        return base.SaveChanges(acceptAllChangesOnSuccess);
+        return tracker.TrackAndPublishSaveChanges(this, acceptAllChangesOnSuccess); // <-- Here
     }
 
     public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
     {
-        await tracker.TrackAndPublishAsync(this); // <-- And here
-        return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        return await tracker.TrackAndPublishSaveChangesAsync(this, acceptAllChangesOnSuccess, cancellationToken); // <-- And here
     }
 }
 ```
