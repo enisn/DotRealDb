@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>enisn</Authors>
+    <Description>DotRealDb is a real-time database which tracks and shared databse changes over SignalR</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/enisn/DotRealDb</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/enisn/DotRealDb</RepositoryUrl>
+    <PackageTags>Real,realtime,realtime db,database,realtime database,entity framework, entity framework realtime database</PackageTags>
+    <PackageReleaseNotes>Released</PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoFilterer" Version="2.1.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0-rc.2.20475.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.9" />
   </ItemGroup>
 

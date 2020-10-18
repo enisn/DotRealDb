@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>enisn</Authors>
+    <Description>DotRealDb is a real-time database which tracks and shared databse changes over SignalR</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/enisn/DotRealDb</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/enisn/DotRealDb</RepositoryUrl>
+    <PackageTags>Real,realtime,realtime db,database,realtime database,entity framework, entity framework realtime database</PackageTags>
+    <PackageReleaseNotes>Released</PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
 
