@@ -11,6 +11,9 @@ A real-time database for AspNetCore Backend which powered by SignalR.
   <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
 </a>
 
+# Showcase
+![dotrealdb-showcase](https://user-images.githubusercontent.com/23705418/96361832-cc161100-1131-11eb-9460-d121733595aa.gif)
+
 
 # Summary
 *to be added...*
