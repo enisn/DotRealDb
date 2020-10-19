@@ -10,6 +10,7 @@
     <PackageTags>Real,realtime,realtime db,database,realtime database,entity framework, entity framework realtime database</PackageTags>
     <PackageReleaseNotes>Released</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 
