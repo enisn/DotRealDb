@@ -34,6 +34,7 @@ namespace DotRealDb.AspNetCore
         {
             var entries = dbContext.ChangeTracker.Entries().ToArray();
             var result = saveChanges();
+            Publish(entries);
             return result;
         }
 
