@@ -7,6 +7,8 @@ A real-time database for AspNetCore Backend which is powered with SignalR.
 
 [![CodeFactor](https://www.codefactor.io/repository/github/enisn/dotrealdb/badge)](https://www.codefactor.io/repository/github/enisn/dotrealdb)
 
+![.NET Core](https://github.com/enisn/DotRealDb/workflows/.NET%20Core/badge.svg)
+
 <a href="https://gitmoji.carloscuesta.me">
   <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
 </a>
