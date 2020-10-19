@@ -1,8 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,14 +19,12 @@ namespace DotRealDb.AspNetCore
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
-            tracker.TrackAndPublish(this);
-            return base.SaveChanges(acceptAllChangesOnSuccess);
+            return tracker.TrackAndPublishSaveChanges(this, acceptAllChangesOnSuccess);
         }
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
-            await tracker.TrackAndPublishAsync(this);
-            return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+            return await tracker.TrackAndPublishSaveChangesAsync(this, acceptAllChangesOnSuccess, cancellationToken);
         }
     }
 }
