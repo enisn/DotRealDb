@@ -222,7 +222,7 @@ else
 
 - Create a list and start to track it.
 
-````csharp
+```csharp
 public class MainPageViewModel : BindableObject
 {
     private readonly DotRealChangeHandler changeHandler;
