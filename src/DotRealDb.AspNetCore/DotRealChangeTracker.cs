@@ -21,19 +21,19 @@ namespace DotRealDb.AspNetCore
             this.hubContext = hubContext;
         }
 
-        public int TrackAndPublishSaveChanges(DbContext dbContext, bool acceptAllChangesOnSuccess = true)
+
+        public async Task<T> TrackAndPublishAfterAsync<T>(DbContext dbContext, Func<Task<T>> saveChanges)
         {
             var entries = dbContext.ChangeTracker.Entries().ToArray();
-            var result = dbContext.SaveChanges(acceptAllChangesOnSuccess);
+            var result = await saveChanges();
             Publish(entries);
             return result;
         }
 
-        public async Task<int> TrackAndPublishSaveChangesAsync(DbContext dbContext, bool acceptAllChangesOnSuccess = true, CancellationToken cancellationToken = default)
+        public T TrackAndPublishAfter<T>(DbContext dbContext, Func<T> saveChanges)
         {
             var entries = dbContext.ChangeTracker.Entries().ToArray();
-            var result = await dbContext.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-            Publish(entries);
+            var result = saveChanges();
             return result;
         }
 

@@ -19,12 +19,12 @@ namespace DotRealDb.AspNetCore
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
-            return tracker.TrackAndPublishSaveChanges(this, acceptAllChangesOnSuccess);
+            return tracker.TrackAndPublishAfter(this, () => base.SaveChanges(acceptAllChangesOnSuccess));
         }
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
-            return await tracker.TrackAndPublishSaveChangesAsync(this, acceptAllChangesOnSuccess, cancellationToken);
+            return await tracker.TrackAndPublishAfterAsync(this, () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken));
         }
     }
 }
