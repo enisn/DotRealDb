@@ -25,7 +25,7 @@ namespace DotRealDb.Client
             this.options = options;
 
             var builder = new HubConnectionBuilder()
-                .WithUrl(options.ServerBaseUrl + "/hubs/DotRealHub")
+                .WithUrl(options.ServerBaseUrl.TrimEnd('/') + "/hubs/DotRealHub")
                 .WithAutomaticReconnect();
 
             options?.ConfigureBuilder?.Invoke(builder);
@@ -43,7 +43,7 @@ namespace DotRealDb.Client
                 if (entityName == null)
                     entityName = typeof(T).Name;
 
-                var json = await client.GetStringAsync($"{options.ServerBaseUrl}/_api/{dbContextName}/{entityName}?page=1&perPage={limit}");
+                var json = await client.GetStringAsync($"{options.ServerBaseUrl.TrimEnd('/')}/_api/{dbContextName}/{entityName}?page=1&perPage={limit}");
 
                 var items = JsonConvert.DeserializeObject<ObservableCollection<T>>(json);
                 await StartTrackingAsync(items, dbContextName, entityName);
