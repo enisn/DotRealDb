@@ -20,11 +20,11 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build DotRealDb.OnlySrc.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test DotRealDb.OnlySrc.sln --no-restore --verbosity normal
     - name: Pack
-      run: dotnet pack --configuration Release --no-restore -o .packages/
+      run: dotnet pack DotRealDb.OnlySrc.sln --configuration Release --no-restore -o .packages/
     - name: Push
       run: dotnet nuget push packages/*.nupkg --source ${{secrets.NUGET_SOURCE}} --api-key ${{secrets.NUGET_KEY}}  --skip-duplicate
       continue-on-error: true
