@@ -47,7 +47,7 @@ namespace Sample.DotRealDb.Web.Server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseWebAssemblyDebugging();
+                //app.UseWebAssemblyDebugging();
             }
             else
             {
@@ -57,7 +57,7 @@ namespace Sample.DotRealDb.Web.Server
             }
 
             //app.UseHttpsRedirection();
-            //app.UseBlazorFrameworkFiles();
+            app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 
             app.UseCors(opt => opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
@@ -66,9 +66,9 @@ namespace Sample.DotRealDb.Web.Server
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapRazorPages();
+                endpoints.MapRazorPages();
                 endpoints.MapControllers();
-                //endpoints.MapFallbackToFile("index.html");
+                endpoints.MapFallbackToFile("index.html");
 
                 endpoints.MapDotRealDbHubs();
             });

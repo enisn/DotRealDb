@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>8bf61db0-53f8-4d32-8a92-846530f37342</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\DotRealDb.AspNetCore\DotRealDb.AspNetCore.csproj" />
+    <ProjectReference Include="..\Client\Sample.DotRealDb.Blazor.csproj" />
     <ProjectReference Include="..\Shared\Sample.DotRealDb.Web.Shared.csproj" />
   </ItemGroup>
 
