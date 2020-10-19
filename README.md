@@ -1,6 +1,6 @@
 ﻿# DotRealDb
 
-A real-time database for AspNetCore Backend which powered by SignalR.
+A real-time database for AspNetCore Backend which is powered with SignalR.
 
 > STILL UNDER-DEVELOPMENT
 
