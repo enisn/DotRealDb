@@ -22,7 +22,7 @@ namespace Sample.DotRealDb.Blazor
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddDotRealDbClient(opts => opts.ServerBaseUrl = "https://localhost:5001");
+            builder.Services.AddDotRealDbClient(opts => opts.ServerBaseUrl = builder.HostEnvironment.BaseAddress);
 
             await builder.Build().RunAsync();
         }
